@@ -1,9 +1,7 @@
-from crypt import methods
-from flask import Flask, render_template, flash, redirect, url_for
-from forms import RegistrationForm, LoginForm
-
-app = Flask(__name__)
-app.config['SECRET_KEY']= '7b85c50c92d0235dbd20a4d07d008e7c'
+from flask import render_template, flash, redirect, url_for
+from flaskblog.forms import RegistrationForm, LoginForm
+from flaskblog.models import User, Post
+from flaskblog import app
 
 posts = [
     {
@@ -50,6 +48,3 @@ def login_form():
         else:
             flash('Login unseccussful. Please check username or password!', 'danger')
     return render_template('login.html', title = 'Login', form = form)
-
-if __name__ == '__main__':
-    app.run(debug=True)
